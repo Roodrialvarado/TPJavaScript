@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+  </head>
+  <body>
+    <h1>MI CURSO JAVA SCRIPT </h1>
+
+    // Introduccion al dom Ej1
+    <p>Este es el primer parrafo</p>
+    <p>Este es el segundo parrafo</p>
+    <p>Este es el tercer parrafo</p>
+  <button onclick="cambiarColor()">Cambiar color a azul</button>
+
+  <script>
+    function cambiarColor() {
+      // Seleccionar todos los elementos de tipo p en la página
+      let parrafos = document.getElementsByTagName("p");
+      // Recorrer cada elemento de tipo p y cambiar su color a azul
+      for (let i = 0; i < parrafos.length; i++) {
+        parrafos[i].style.color = "blue";
+      }
+    }
+  </script>
+
+<p>Introduccion al dom Ej2</p>
+
+<form>
+  <label for="texto">Ingresa un texto:</label>
+  <input type="text" id="texto" name="texto">
+  <button type="button" onclick="mostrarAlerta()">Mostrar alerta</button>
+</form>
+
+
+
+<p> //Eventos dom Ej1</p>
+
+<ul id="lista">
+  <li>Elemento 1</li>
+  <li>Elemento 2</li>
+  <li>Elemento 3</li>
+  <li>Elemento 4</li>
+</ul>
+
+
+
+//Eventos dom ej2
+<input type="text" id="campoTexto">
+<button id="deshabilitar">Deshabilitar</button>
+<button id="habilitar">Habilitar</button>
+
+<p>//local storage</p>
+
+
+<form id="formulario">
+  <label for="correo">Correo electrónico:</label>
+  <input type="email" id="correo" name="correo" required>
+  <button type="submit">Guardar</button>
+</form>
+
+<div id="correoGuardado"></div>
+
+<script>
+  // Obtener los elementos del DOM
+  let formulario = document.getElementById("formulario");
+  let correoInput = document.getElementById("correo");
+  let correoGuardadoDiv = document.getElementById("correoGuardado");
+
+  // Agregar evento al formulario
+  formulario.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    // Guardar el correo en localStorage
+    localStorage.setItem("correo", correoInput.value);
+
+    // Mostrar el correo guardado en el DOM
+    correoGuardadoDiv.innerHTML = `
+      <p>Correo guardado: ${correoInput.value}</p>
+      <button id="eliminar">Eliminar</button>
+    `;
+
+    // Agregar evento al botón de eliminar
+    let eliminarBtn = document.getElementById("eliminar");
+    eliminarBtn.addEventListener("click", function() {
+      // Eliminar el correo de localStorage
+      localStorage.removeItem("correo");
+
+      // Eliminar el correo guardado del DOM
+      correoGuardadoDiv.innerHTML = "";
+    });
+  });
+
+  // Mostrar el correo guardado en el DOM al cargar la página
+  let correoGuardado = localStorage.getItem("correo");
+  if (correoGuardado) {
+    correoGuardadoDiv.innerHTML = `
+      <p>Correo guardado: ${correoGuardado}</p>
+      <button id="eliminar">Eliminar</button>
+    `;
+
+    // Agregar evento al botón de eliminar
+    let eliminarBtn = document.getElementById("eliminar");
+    eliminarBtn.addEventListener("click", function() {
+      // Eliminar el correo de localStorage
+      localStorage.removeItem("correo");
+
+      // Eliminar el correo guardado del DOM
+      correoGuardadoDiv.innerHTML = "";
+    });
+  }
+</script>
+
+    <div id="app"></div>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
